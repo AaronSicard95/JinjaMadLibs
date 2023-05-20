@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <title>MadLib Form</title>
+    </head>
+    <body>
+        <form action = "http://localhost:5000/make-story">
+        <select name="stories" onchange="this.form.submit()">
+            {%for name in storyNames%}
+            <option value="{{name.name}}" {%if name.name == selectedName%} selected {%endif%}>{{name.name}}</option>
+            {%endfor%}
+        </select>
+        <h1>{{selectedName}}</h1>
+        </form>
+        <form action = "http://localhost:5000/story", mothod="POST">
+            {%for word in words%}
+            <label for="{{word}}">{{word}}</label>
+            <input type="text" name="{{word}}"> 
+            <br>
+            {%endfor%}
+            <input type="submit">
+        </form>
+
+    </body>
+    <script src="../static/script.js"></script>
+</html>
